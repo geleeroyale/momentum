@@ -1,0 +1,47 @@
+{
+  "name": "@wip-abramson/ecosystem",
+  "version": "0.5.2",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build-examples": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "overwrite-lib": "cpx 'temp/**/*.*' lib --clean",
+    "build-lib": "rimraf temp && NODE_ENV=production babel src/lib --out-dir temp --copy-files --ignore __tests__,spec.js,test.js,__snapshots__ && cpx package.json ./temp/ && npm run overwrite-lib",
+    "build": "rimraf dist && NODE_ENV=production babel src/lib --out-dir dist --copy-files --ignore __tests__,spec.js,test.js,__snapshots__ && cpx package.json ./dist/",
+    "publish-dist": "yarn build && npm publish dist"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.4.3",
+    "babel-preset-react-app": "^7.0.2",
+    "cpx": "^1.5.0",
+    "node-sass": "^4.11.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-scripts": "^2.1.8",
+    "rimraf": "^2.6.3"
+  },
+  "peerDependencies": {
+    "node-sass": "^4.11.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "dependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/runtime": "^7.4.3",
+    "chart.js": "^2.8.0",
+    "laco": "^1.2.1",
+    "laco-react": "^1.1.0",
+    "react-chartjs-2": "^2.7.6"
+  }
+}

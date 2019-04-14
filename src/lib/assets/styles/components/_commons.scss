@@ -1,0 +1,26 @@
+.campaigns {
+  margin: 5rem auto;
+  max-width: 1260px;
+  color: #3a6467;
+
+  h3 {
+    font-size: 32px;
+  }
+  p {
+    margin-bottom: 3rem;
+    font-size: 18px;
+  }
+
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+
+    .eco-card {
+      margin-bottom: 3rem;
+      margin-right: 3rem;
+    }
+    .eco-card:hover {
+      cursor: pointer;
+    }
+  }
+}

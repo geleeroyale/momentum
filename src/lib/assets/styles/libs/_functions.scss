@@ -1,0 +1,4 @@
+
+@function palette($key) {
+  @return map_get($palette, $key);
+}

@@ -1,0 +1,11 @@
+input {
+  &.eco {
+    padding: 5px;
+    margin: 2px 5px;
+    box-shadow: 1px 1px 0px 1px palette(primary);
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

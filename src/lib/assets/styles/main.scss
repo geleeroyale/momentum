@@ -1,0 +1,37 @@
+@import 'libs/vars';
+@import 'libs/functions';
+
+//Layout
+@import 'layout/header';
+
+// Components
+@import 'components/text-input';
+@import 'components/header';
+@import 'components/button';
+@import 'components/input';
+@import 'components/navbar';
+@import 'components/commons';
+@import 'components/card';
+@import 'components/milestones';
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background-color: palette(bg);
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

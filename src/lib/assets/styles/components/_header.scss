@@ -1,0 +1,61 @@
+.eco-header {
+  background-size: cover;
+  color: white;
+  .login {
+    width: 200px;
+    margin: 30px;
+    float: right;
+    justify-self: flex-end;
+  }
+
+  .eco-header-content {
+    display: flex;
+    flex-direction: column;
+
+    .description {
+      max-width: 800px;
+      p {
+        margin: 0;
+      }
+    }
+
+    .row {
+      display: flex;
+      div {
+        padding-right: 10px;
+        margin: 20px 30px 20px 0;
+      }
+
+      //p {
+      //  padding-top: 25px;
+      //}
+    }
+  }
+
+  .eco-nav-bar {
+    background-color: darkturquoise;
+
+    button {
+      background-color: transparent;
+      color: white;
+      border: none;
+      padding: 10px;
+      opacity: 0.8;
+      &:hover {
+        opacity: 1;
+        cursor: pointer;
+      }
+
+      &:focus {
+        outline: none;
+        border-top: 1px solid white;
+        opacity: 1;
+      }
+    }
+  }
+
+  .givethers {
+    display: flex;
+    align-items: center;
+  }
+}

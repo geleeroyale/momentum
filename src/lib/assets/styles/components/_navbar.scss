@@ -1,0 +1,78 @@
+.eco-main-navbar {
+  display: flex;
+  align-items: center;
+  margin: auto 172px;
+  height: 4rem;
+  color: #3a6467;
+
+  .giveth-logo {
+    display: flex;
+    height: 100%;
+    padding-right: 2rem;
+    border-right: #3333 solid 1px;
+  }
+
+  .commons-dropdown {
+    display: flex;
+    height: 100%;
+
+    border-right: #3333 solid 1px;
+    padding: 0 2rem;
+
+    p {
+      display: flex;
+      align-items: center;
+    }
+
+    .selected {
+      font-weight: bold;
+      margin-left: 0.5rem;
+    }
+
+    .selected::after {
+      margin-left: 0.5rem;
+      width: 0;
+      height: 0;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      content: '';
+
+      border-top: 6px solid #3a6467;
+    }
+  }
+
+  .nav-content {
+    display: flex;
+    margin-left: 2rem;
+
+    p {
+      margin-right: 1rem;
+    }
+
+    p:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    .support {
+      background: -webkit-linear-gradient(270deg, #8e2de2 0%, #4a00e0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+
+  .profile {
+    display: flex;
+    align-items: center;
+    margin-left: 180px;
+    p {
+      display: flex;
+      align-items: center;
+
+      .selected {
+        margin: 0 0.5rem;
+        font-weight: bold;
+      }
+    }
+  }
+}
