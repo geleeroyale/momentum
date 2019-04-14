@@ -10,7 +10,7 @@ class Me extends Component {
     this.state = {
       globalparams: props.globalparams,
       convictions: props.convictions,
-      treshold: props.treshold,
+      treshold: props.treshold
     };
   }
 
@@ -31,12 +31,15 @@ class Me extends Component {
     return `rgba(${r},${g},${b},0.3)`;
   }
 
-  recalc() {
+  getLabels(){
     let labels = [];
     for (let t = 0; t < this.state.globalparams.totaltime; t++) {
       labels.push(t);
     }
+    return labels;
+  }
 
+  recalc() {
     let stakeHistory = [];
 
     let datasets = this.state.convictions.map((user, userindex) => {
@@ -45,7 +48,6 @@ class Me extends Component {
       let y0 = 0;
       let y1 = y0;
       let x = 0;
-      let labels = [];
       let data = [];
 
       let localt = 0; // local time ( = age of current conviction amount - reset every time conviction stake is changed.)
@@ -53,11 +55,7 @@ class Me extends Component {
 
       for (let t = 0; t < this.state.globalparams.totaltime; t++) {
         // get timeline events for this CV
-
-        y1 = convictionlib.getConviction(a, D, y0, x, localt);
-
-        data.push(y1);
-
+        data.push(convictionlib.getConviction(a, D, y0, x, localt));
         // check if user changed his conviction
         if (
           user.stakes &&
@@ -69,21 +67,18 @@ class Me extends Component {
           x = action.tokensstaked;
           localt = 0;
           y0 = y1;
-
           // descriptive history
           stakeHistory.push({
             t: t,
             desc: `${user.name} changes stake to ${action.tokensstaked}`
           });
         }
-
         localt++;
       }
 
       return {
         label: user.name,
         fill: false,
-        // backgroundColor: "rgba(75,192,192,0.4)",
         borderColor: this.makecolor(userindex),
         data: data
       };
@@ -116,7 +111,7 @@ class Me extends Component {
 
     this.setState({
       plot: {
-        labels: labels,
+        labels: this.getLabels(),
         datasets: datasets
       },
       timeline: stakeHistory
@@ -134,27 +129,7 @@ class Me extends Component {
 
     return (
       <div className="container">
-        <section className="hero is-info welcome is-small">
-          {/* <div className="hero-body"> */}
-            {/* <div className="container">
-              <h1 className="title">Proposal : {this.state.proposal.name}</h1>
-            </div> */}
-          {/* </div> */}
-          {/* Alpha= {this.state.alpha / 100}
-          <input
-            class="slider is-fullwidth is-large is-danger is-circle"
-            step="1"
-            min="0"
-            max="100"
-            value={this.state.alpha}
-            type="range"
-            onChange={e => {
-              this.setState({ alpha: e.target.value });
-              this.recalc();
-            }}
-          /> */}
-        </section>
-
+        <section className="hero is-info welcome is-small" />
         <div className="card">
           <header className="card-header">
             <p className="card-header-title">Conviction chart</p>

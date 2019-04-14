@@ -26,7 +26,7 @@ const milestones = [
       "Aqua array detects increasing concentration of unwanted substance 09A. Bad actor is autofactory 01a. Proposal is shutdown, further investigation, maintenance and resolution of error.",
     currentValue: 5000,
     maxValue: 5000,
-    treshold: 80000,
+    treshold: 100000,
   },
   {
     title: "Milestone: Protect Water Resource from pollution",
