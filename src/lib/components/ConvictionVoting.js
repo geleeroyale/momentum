@@ -9,7 +9,8 @@ class Me extends Component {
 
     this.state = {
       globalparams: props.globalparams,
-      convictions: props.convictions
+      convictions: props.convictions,
+      treshold: props.treshold,
     };
   }
 
@@ -90,12 +91,19 @@ class Me extends Component {
 
     // add a dataset with the total conviction
     let totalconvictiondata = [];
+    let triggervals = [];
     for (let t = 0; t < this.state.globalparams.totaltime; t++) {
       let total = datasets.reduce((accumulator, currentValue) => {
         return accumulator + currentValue.data[t];
       }, 0);
       totalconvictiondata.push(total);
+      triggervals.push(this.props.treshold);
     }
+    datasets.push({
+      label: "trigger value",
+      borderColor: "rgba(75,255,75,1)",
+      data: triggervals
+    });
     datasets.push({
       label: "total",
       borderColor: "rgba(75,192,192,1)",

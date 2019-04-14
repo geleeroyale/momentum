@@ -4,14 +4,29 @@ import { changeState } from "../stores/navigation";
 import PrimaryButton from "./PrimaryButton";
 import ConvictionVoting from "./ConvictionVoting";
 
+const globalparams = {
+  alpha: 90,
+  totaltime: 100
+};
+
+let d = 65;
+
+const around = (offset,range) => {
+  d += 7;
+  return ((offset) + ((d * 47) & (range||60)));
+};
+
+
+
 const milestones = [
   {
     title: "Milestone: Protect Water Resource from pollution",
     subtext: "Commons: Philadelphia area",
     longtext:
       "Aqua array detects increasing concentration of unwanted substance 09A. Bad actor is autofactory 01a. Proposal is shutdown, further investigation, maintenance and resolution of error.",
-    currentValue: 2000,
-    maxValue: 5000
+    currentValue: 5000,
+    maxValue: 5000,
+    treshold: 80000,
   },
   {
     title: "Milestone: Protect Water Resource from pollution",
@@ -19,33 +34,45 @@ const milestones = [
     longtext:
       "Aqua array detects increasing concentration of unwanted substance 09A. Bad actor is autofactory 01a. Proposal is shutdown, further investigation, maintenance and resolution of error.",
     currentValue: 2000,
-    maxValue: 5000
-  }
-];
+    maxValue: 5000,
+    treshold: 150000,
 
-const globalparams = {
-  alpha: 90,
-  totaltime: 100
-};
-
-const convictions = [
-  {
-    name: "Philadelphia DAO",
-    stakes: [{ time: 0, tokensstaked: 1000 }, { time: 50, tokensstaked: 0 }]
-  },
-  {
-    name: "Aqua Array",
-    stakes: [{ time: 20, tokensstaked: 333 }, { time: 65, tokensstaked: 8000 }]
-  },
-  {
-    name: "Global Water Commons",
-    stakes: [{ time: 30, tokensstaked: 1000 }, { time: 80, tokensstaked: 7000 }]
-  },
-  {
-    name: "Autofactory Factory",
-    stakes: [{ time: 0, tokensstaked: 1100 }, { time: 30, tokensstaked: 7000 }]
   }
-];
+].map((milestone, i) => {
+  return {
+    ...milestone,
+    convictions: [
+      {
+        name: "Philadelphia DAO",
+        stakes: [
+          { time: around(0), tokensstaked: around(2000,300) },
+          { time: around(50), tokensstaked: around(0,300) }
+        ]
+      },
+      {
+        name: "Aqua Array",
+        stakes: [
+          { time: around(20), tokensstaked: around(333,300) },
+          { time: around(65), tokensstaked: around(6000,5000) }
+        ]
+      },
+      {
+        name: "Global Water Commons",
+        stakes: [
+          { time: around(30), tokensstaked: around(1000,500) },
+          { time: around(80), tokensstaked: around(7000,4500) }
+        ]
+      },
+      {
+        name: "Autofactory Factory",
+        stakes: [
+          { time: around(0), tokensstaked: 1100 },
+          { time: around(30), tokensstaked: 7000 }
+        ]
+      }
+    ]
+  };
+});
 
 const Milestones = () => (
   <div className="eco-milestones">
@@ -66,7 +93,7 @@ const Milestones = () => (
         <td>Actions</td>
       </tr>
       {milestones.map(
-        ({ title, subtext, longtext, currentValue, maxValue }) => (
+        ({ title, subtext, longtext, currentValue, maxValue, convictions,treshold }) => (
           <>
             <tr onClick={() => changeState("milestone")}>
               <td>
@@ -92,6 +119,7 @@ const Milestones = () => (
                 <ConvictionVoting
                   globalparams={globalparams}
                   convictions={convictions}
+                  treshold={treshold}
                 />
               </td>
               <td>
